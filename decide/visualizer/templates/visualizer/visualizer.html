@@ -19,6 +19,8 @@
         <div class="voting container">
             <h1>[[ voting.id ]] - [[ voting.name ]]</h1>
 
+            <p>{{tipo}}</p>
+
             <h2 v-if="!voting.start_date">Votación no comenzada</h2>
             <h2 v-else-if="!voting.end_date">Votación en curso</h2>
             <div v-else>
@@ -75,6 +77,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
 
     <script>
+        
         var voting = {{voting|safe}};
         var app = new Vue({
             delimiters: ['[[', ']]'],
@@ -89,107 +92,111 @@
         let labels = voting.postproc.map((opt) => opt.option)
         let postproc = voting.postproc.map((opt) => opt.postproc)
         let votes = voting.postproc.map((opt) => opt.votes)
-       
         let grafica2 = labels.map(function(e, i) {
             return [e, votes[i]];
         });
-        
-        Highcharts.chart('container', {
-            chart: {
-                type: 'column'
-            },
-            title: {
-                
-                text: voting.name
-            },
-            xAxis: {
-                categories: labels,
-                crosshair: true
-            },
-            yAxis: {
+        let a = "{{tipo}}"
+        if(a == "SN"){
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'column'
+                },
                 title: {
                     
-                    text: 'Número de votos'
-                }
-            },
-            tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-            },
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                }
-            },
-            series: [{
-                name: 'Votes',
-                data: votes
-
-            },
-            {
-                name: 'Post proc',
-                data: postproc
-
-            }]
-        });
-
-        
-        Highcharts.chart('grafica2', {
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: 0,
-                plotShadow: false
-            },
-            title: {
-                text: voting.name,
-                align: 'center',
-                verticalAlign: 'middle',
-                y: 60
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-            },
-            accessibility: {
-                point: {
-                    valueSuffix: '%'
-                }
-            },
-            plotOptions: {
-                pie: {
-                    dataLabels: {
-                        enabled: true,
-                        distance: -50,
-                        style: {
-                            fontWeight: 'bold',
-                            color: 'white'
-                        }
-                    },
-                    startAngle: -90,
-                    endAngle: 90,
-                    center: ['50%', '75%'],
-                    size: '110%'
-                }
-            },
-            series: [{
-                type: 'pie',
-                name: 'Browser share',
-                innerSize: '50%',
-                data: [grafica2,
-                    {
-                        name: 'Other',
-                        y: 3.77,
-                        dataLabels: {
-                            enabled: false
-                        }
+                    text: voting.name
+                },
+                xAxis: {
+                    categories: labels,
+                    crosshair: true
+                },
+                yAxis: {
+                    title: {
+                        
+                        text: 'Número de votos'
                     }
-                ]
-            }]
-        });
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: 'Votes',
+                    data: votes
+
+                },
+                {
+                    name: 'Post proc',
+                    data: postproc
+
+                }]
+            });
+        }
+        
+        else{
+
+            Highcharts.chart('grafica2', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: 0,
+                    plotShadow: false
+                },
+                title: {
+                    text: voting.name,
+                    align: 'center',
+                    verticalAlign: 'middle',
+                    y: 60
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                accessibility: {
+                    point: {
+                        valueSuffix: '%'
+                    }
+                },
+                plotOptions: {
+                    pie: {
+                        dataLabels: {
+                            enabled: true,
+                            distance: -50,
+                            style: {
+                                fontWeight: 'bold',
+                                color: 'white'
+                            }
+                        },
+                        startAngle: -90,
+                        endAngle: 90,
+                        center: ['50%', '75%'],
+                        size: '110%'
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: 'Browser share',
+                    innerSize: '50%',
+                    data: [grafica2,
+                        {
+                            name: 'Other',
+                            y: 3.77,
+                            dataLabels: {
+                                enabled: false
+                            }
+                        }
+                    ]
+                }]
+            });
+        }
+
     </script>   
 </body>
 {% endblock %}

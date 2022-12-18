@@ -71,7 +71,7 @@ MODULES = [
 ]
 
 #BASEURL = 'http://localhost:8000'
-BASEURL = 'http://app_a4591037-a57f-4547-9a45-23386c5f7a0b.cleverapps.io/'
+BASEURL = 'http://app_ea8dc875-03bf-439c-83de-b02a26fe6242.cleverapps.io/'
 
 APIS = {
     'authentication': BASEURL,

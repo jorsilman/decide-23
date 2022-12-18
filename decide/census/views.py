@@ -251,7 +251,7 @@ def reuseCensusV2BV(request):
                 reuseCenso.save()
     except IntegrityError:
             return HttpResponse('no se ha podido crear el censo')
-    return HttpResponse('se ha creado el censo correctamente')        
+    return render(request, 'indexCensus.html', {'boleano':True})        
 
 def reuseCensusV2SV(request):
     census2 = Census.objects.filter(type="SV")
@@ -284,7 +284,7 @@ def reuseCensusV2SV(request):
                 reuseCenso.save()
     except IntegrityError:
             return HttpResponse('no se ha podido crear el censo')
-    return HttpResponse('se ha creado el censo correctamente') 
+    return render(request, 'indexCensus.html', {'boleano':True}) 
 
 def censusForAll(request):
     voters = User.objects.all()
@@ -311,7 +311,7 @@ def censusForAll(request):
                 id_repetidas += (str(id)+",")
     except IntegrityError:
             return HttpResponse('no se ha podido crear el censo')
-    return HttpResponse('se ha creado el censo correctamente') 
+    return render(request, 'indexCensus.html', {'boleano':True}) 
 
  
 def censusForAllBV(request):
@@ -339,7 +339,7 @@ def censusForAllBV(request):
                 id_repetidas += (str(id)+",")
     except IntegrityError:
             return HttpResponse('no se ha podido crear el censo')
-    return HttpResponse('se ha creado el censo correctamente') 
+    return render(request, 'indexCensus.html', {'boleano':True}) 
 
 
 def censusForAllSV(request):
@@ -367,7 +367,7 @@ def censusForAllSV(request):
                 id_repetidas += (str(id)+",")
     except IntegrityError:
             return HttpResponse('no se ha podido crear el censo')
-    return HttpResponse('se ha creado el censo correctamente')          
+    return render(request, 'indexCensus.html', {'boleano':True})          
     
 def prueba(request):
     census = Census.objects.filter(type="V")

@@ -1,0 +1,91 @@
+.bg-1{
+    background: linear-gradient(to right, rgb(97, 67, 133), rgb(81, 99, 149));
+    height: 50vh;
+    padding-top: 150px;
+ }
+ 
+ .t-stroke {
+   color: transparent;
+   -moz-text-stroke-width: 2px;
+   -webkit-text-stroke-width: 2px;
+   -moz-text-stroke-color: #000000;
+   -webkit-text-stroke-color: #ffffff;
+ }
+ 
+ .t-shadow {
+   text-shadow: 7px 7px #8dffcd;
+ }
+ 
+.pepe {
+	position: relative;
+	text-align: center;
+	font-size: x-large;
+	font-family: 'Press Start 2P', cursive;
+	animation-name: anim;
+	animation-duration: 5s;
+	animation-iteration-count: infinite;
+}
+@keyframes anim{
+    0% {color: blue;} /*Amarillo*/
+   25% {color: purple;} /*Naranja*/
+   50% {color: red;} /*Negro*/
+   75% {color: black;} /*Otra vez naranja*/
+  100% {color: blue;} /*Otra vez amarillo*/
+}
+
+.parent{
+  display: grid;
+  place-items: center;
+}
+
+
+
+
+.tarjeta{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  width:420px;
+  border: 1px solid lightgray;
+  box-shadow: 2px 2px 8px 4px #d3d3d3d1;
+  border-radius:15px;
+  font-family: sans-serif;
+}
+
+.select{
+  height: 50px;
+}
+
+.content2{
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ 
+.titulo{
+  font-size: 24px;
+  padding: 10px 10px 0 10px;;
+}
+.cuerpo{
+  padding: 10px;
+}
+.pie{
+  background: #6699ff;
+  border-radius:0 0 15px 15px;
+  padding: 10px;
+  text-align:center;
+}
+.pie a{
+  text-decoration: none;
+  color: white;
+}
+.pie a:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  content: ""
+}

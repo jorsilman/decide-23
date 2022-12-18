@@ -11,12 +11,14 @@ RUN pip install ipython
 WORKDIR /app
 
 RUN git clone https://github.com/jorsilman/decide-23.git .
+RUN git checkout develop
 RUN pip install -r requirements.txt
 
 WORKDIR /app/decide
 
 # local settings.py
 ADD docker-settings.py /app/decide/local_settings.py
+
 
 RUN ./manage.py collectstatic
 
